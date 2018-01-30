@@ -1,7 +1,7 @@
 
 <%
-// commiting code on github
-
+	// commiting code on github
+	// new comment to test
 	if (session.getAttribute("userId") != null) {
 
 		session.setAttribute("page", "addinvlist");
@@ -478,304 +478,301 @@
 
 	<script type="text/javascript">
 		jQuery(document)
-				.ready(
-						function() {
-
-							"use strict";
-
-							// Init Theme Core    
-							Core.init();
-
-							// Init Demo JS     
-							Demo.init();
-
-							/* @custom validation method (smartCaptcha) 
-							------------------------------------------------------------------ */
-
-							$.validator.methods.smartCaptcha = function(value,
-									element, param) {
-								return value == param;
-							};
-
-							$("#admin-form")
-									.validate(
-											{
-
-												/* @validation states + elements 
-												------------------------------------------- */
-
-												errorClass : "state-error",
-												validClass : "state-success",
-												errorElement : "em",
-
-												/* @validation rules 
-												------------------------------------------ */
-
-												rules : {
-													materialQty : {
-														required : true,
-														number : true,
-													},
-													materialName : {
-														required : true
-													},
-													clientName : {
-														required : true
-													}
-												},
-
-												/* @validation error messages 
-												---------------------------------------------- */
-
-												messages : {
-
-													clientName : {
-														required : 'Enter Company Name'
-													},
-
-													materialName : {
-														required : 'Oops you forgot to select state'
-													},
-													materialQty : {
-														required : 'enter quantity'
-													},
-
-												},
-
-												/* @validation highlighting + error placement  
-												---------------------------------------------------- */
-
-												highlight : function(element,
-														errorClass, validClass) {
-													$(element)
-															.closest('.field')
-															.addClass(
-																	errorClass)
-															.removeClass(
-																	validClass);
-												},
-												unhighlight : function(element,
-														errorClass, validClass) {
-													$(element)
-															.closest('.field')
-															.removeClass(
-																	errorClass)
-															.addClass(
-																	validClass);
-												},
-												errorPlacement : function(
-														error, element) {
-													if (element.is(":radio")
-															|| element
-																	.is(":checkbox")) {
-														element
-																.closest(
-																		'.option-group')
-																.after(error);
-													} else {
-														error
-																.insertAfter(element
-																		.parent());
-													}
-												}
-
-											});
-
-							// Cache several DOM elements
-							var pageHeader = $('.content-header').find('b');
-							var adminForm = $('.admin-form');
-							var options = adminForm.find('.option');
-							var switches = adminForm.find('.switch');
-							var buttons = adminForm.find('.button');
-							var Panel = adminForm.find('.panel');
-
-							// Form Skin Switcher
-							$('#skin-switcher a')
-									.on(
-											'click',
-											function() {
-												var btnData = $(this).data(
-														'form-skin');
-
-												$('#skin-switcher a')
-														.removeClass(
-																'item-active');
-												$(this).addClass('item-active')
-
-												adminForm
-														.each(function(i, e) {
-															var skins = 'theme-primary theme-info theme-success theme-warning theme-danger theme-alert theme-system theme-dark'
-															var panelSkins = 'panel-primary panel-info panel-success panel-warning panel-danger panel-alert panel-system panel-dark'
-															$(e)
-																	.removeClass(
-																			skins)
-																	.addClass(
-																			'theme-'
-																					+ btnData);
-															Panel
-																	.removeClass(
-																			panelSkins)
-																	.addClass(
-																			'panel-'
-																					+ btnData);
-															pageHeader
-																	.removeClass()
-																	.addClass(
-																			'text-'
-																					+ btnData);
-														});
-
-												$(options)
-														.each(
-																function(i, e) {
-																	if ($(e)
-																			.hasClass(
-																					'block')) {
-																		$(e)
-																				.removeClass()
-																				.addClass(
-																						'block mt15 option option-'
-																								+ btnData);
-																	} else {
-																		$(e)
-																				.removeClass()
-																				.addClass(
-																						'option option-'
-																								+ btnData);
-																	}
-																});
-
-												// var sliders = $('.ui-timepicker-div', adminForm).find('.ui-slider');
-												$('body')
-														.find('.ui-slider')
-														.each(
-																function(i, e) {
-																	$(e)
-																			.addClass(
-																					'slider-primary');
-																});
-
-												$(switches)
-														.each(
-																function(i, ele) {
-																	if ($(ele)
-																			.hasClass(
-																					'switch-round')) {
-																		if ($(
-																				ele)
-																				.hasClass(
-																						'block')) {
-																			$(
-																					ele)
-																					.removeClass()
-																					.addClass(
-																							'block mt15 switch switch-round switch-'
-																									+ btnData);
-																		} else {
-																			$(
-																					ele)
-																					.removeClass()
-																					.addClass(
-																							'switch switch-round switch-'
-																									+ btnData);
-																		}
-																	} else {
-																		if ($(
-																				ele)
-																				.hasClass(
-																						'block')) {
-																			$(
-																					ele)
-																					.removeClass()
-																					.addClass(
-																							'block mt15 switch switch-'
-																									+ btnData);
-																		} else {
-																			$(
-																					ele)
-																					.removeClass()
-																					.addClass(
-																							'switch switch-'
-																									+ btnData);
-																		}
-																	}
-
-																});
-												buttons
+			.ready(
+				function() {
+	
+					"use strict";
+	
+					// Init Theme Core    
+					Core.init();
+	
+					// Init Demo JS     
+					Demo.init();
+	
+					/* @custom validation method (smartCaptcha) 
+					------------------------------------------------------------------ */
+	
+					$.validator.methods.smartCaptcha = function(value,
+						element, param) {
+						return value == param;
+					};
+	
+					$("#admin-form")
+						.validate(
+							{
+	
+								/* @validation states + elements 
+								------------------------------------------- */
+	
+								errorClass : "state-error",
+								validClass : "state-success",
+								errorElement : "em",
+	
+								/* @validation rules 
+								------------------------------------------ */
+	
+								rules : {
+									materialQty : {
+										required : true,
+										number : true,
+									},
+									materialName : {
+										required : true
+									},
+									clientName : {
+										required : true
+									}
+								},
+	
+								/* @validation error messages 
+								---------------------------------------------- */
+	
+								messages : {
+									clientName : {
+										required : 'Enter Company Name'
+									},
+	
+									materialName : {
+										required : 'Oops you forgot to select state'
+									},
+									materialQty : {
+										required : 'enter quantity'
+									},
+								},
+	
+								/* @validation highlighting + error placement  
+								---------------------------------------------------- */
+	
+								highlight : function(element,
+									errorClass, validClass) {
+									$(element)
+										.closest('.field')
+										.addClass(
+											errorClass)
+										.removeClass(
+											validClass);
+								},
+								unhighlight : function(element,
+									errorClass, validClass) {
+									$(element)
+										.closest('.field')
+										.removeClass(
+											errorClass)
+										.addClass(
+											validClass);
+								},
+								errorPlacement : function(
+									error, element) {
+									if (element.is(":radio")
+										|| element
+											.is(":checkbox")) {
+										element
+											.closest(
+												'.option-group')
+											.after(error);
+									} else {
+										error
+											.insertAfter(element
+												.parent());
+									}
+								}
+							});
+	
+					// Cache several DOM elements
+					var pageHeader = $('.content-header').find('b');
+					var adminForm = $('.admin-form');
+					var options = adminForm.find('.option');
+					var switches = adminForm.find('.switch');
+					var buttons = adminForm.find('.button');
+					var Panel = adminForm.find('.panel');
+	
+					// Form Skin Switcher
+					$('#skin-switcher a')
+						.on(
+							'click',
+							function() {
+								var btnData = $(this).data(
+									'form-skin');
+	
+								$('#skin-switcher a')
+									.removeClass(
+										'item-active');
+								$(this).addClass('item-active')
+	
+								adminForm
+									.each(function(i, e) {
+										var skins = 'theme-primary theme-info theme-success theme-warning theme-danger theme-alert theme-system theme-dark'
+										var panelSkins = 'panel-primary panel-info panel-success panel-warning panel-danger panel-alert panel-system panel-dark'
+										$(e)
+											.removeClass(
+												skins)
+											.addClass(
+												'theme-'
+												+ btnData);
+										Panel
+											.removeClass(
+												panelSkins)
+											.addClass(
+												'panel-'
+												+ btnData);
+										pageHeader
+											.removeClass()
+											.addClass(
+												'text-'
+												+ btnData);
+									});
+	
+								$(options)
+									.each(
+										function(i, e) {
+											if ($(e)
+													.hasClass(
+														'block')) {
+												$(e)
+													.removeClass()
+													.addClass(
+														'block mt15 option option-'
+														+ btnData);
+											} else {
+												$(e)
+													.removeClass()
+													.addClass(
+														'option option-'
+														+ btnData);
+											}
+										});
+	
+								// var sliders = $('.ui-timepicker-div', adminForm).find('.ui-slider');
+								$('body')
+									.find('.ui-slider')
+									.each(
+										function(i, e) {
+											$(e)
+												.addClass(
+													'slider-primary');
+										});
+	
+								$(switches)
+									.each(
+										function(i, ele) {
+											if ($(ele)
+													.hasClass(
+														'switch-round')) {
+												if ($(
+														ele)
+														.hasClass(
+															'block')) {
+													$(
+														ele)
 														.removeClass()
 														.addClass(
-																'button btn-'
-																		+ btnData);
-											});
-
-							setTimeout(
-									function() {
-										adminForm.addClass('theme-primary');
-										Panel.addClass('panel-primary');
-										pageHeader.addClass('text-primary');
-
-										$(options)
-												.each(
-														function(i, e) {
-															if ($(e).hasClass(
-																	'block')) {
-																$(e)
-																		.removeClass()
-																		.addClass(
-																				'block mt15 option option-primary');
-															} else {
-																$(e)
-																		.removeClass()
-																		.addClass(
-																				'option option-primary');
-															}
-														});
-
-										$(switches)
-												.each(
-														function(i, ele) {
-															if ($(ele)
-																	.hasClass(
-																			'switch-round')) {
-																if ($(ele)
-																		.hasClass(
-																				'block')) {
-																	$(ele)
-																			.removeClass()
-																			.addClass(
-																					'block mt15 switch switch-round switch-primary');
-																} else {
-																	$(ele)
-																			.removeClass()
-																			.addClass(
-																					'switch switch-round switch-primary');
-																}
-															} else {
-																if ($(ele)
-																		.hasClass(
-																				'block')) {
-																	$(ele)
-																			.removeClass()
-																			.addClass(
-																					'block mt15 switch switch-primary');
-																} else {
-																	$(ele)
-																			.removeClass()
-																			.addClass(
-																					'switch switch-primary');
-																}
-															}
-														});
-									}, 800);
-							// Init Select2 - Basic Single
-							$(".select2-single").select2();
-
-							// Init Select2 - Contextuals (via html classes)
-							$(".select2-primary").select2(); // select2 contextual - primary
-							$(".select2-success").select2(); // select2 contextual - success
-							$(".select2-info").select2(); // select2 contextual - info
-							$(".select2-warning").select2(); /*  // select2 contextual - warning  */
-						});
+															'block mt15 switch switch-round switch-'
+															+ btnData);
+												} else {
+													$(
+														ele)
+														.removeClass()
+														.addClass(
+															'switch switch-round switch-'
+															+ btnData);
+												}
+											} else {
+												if ($(
+														ele)
+														.hasClass(
+															'block')) {
+													$(
+														ele)
+														.removeClass()
+														.addClass(
+															'block mt15 switch switch-'
+															+ btnData);
+												} else {
+													$(
+														ele)
+														.removeClass()
+														.addClass(
+															'switch switch-'
+															+ btnData);
+												}
+											}
+	
+										});
+								buttons
+									.removeClass()
+									.addClass(
+										'button btn-'
+										+ btnData);
+							});
+	
+					setTimeout(
+						function() {
+							adminForm.addClass('theme-primary');
+							Panel.addClass('panel-primary');
+							pageHeader.addClass('text-primary');
+	
+							$(options)
+								.each(
+									function(i, e) {
+										if ($(e).hasClass(
+												'block')) {
+											$(e)
+												.removeClass()
+												.addClass(
+													'block mt15 option option-primary');
+										} else {
+											$(e)
+												.removeClass()
+												.addClass(
+													'option option-primary');
+										}
+									});
+	
+							$(switches)
+								.each(
+									function(i, ele) {
+										if ($(ele)
+												.hasClass(
+													'switch-round')) {
+											if ($(ele)
+													.hasClass(
+														'block')) {
+												$(ele)
+													.removeClass()
+													.addClass(
+														'block mt15 switch switch-round switch-primary');
+											} else {
+												$(ele)
+													.removeClass()
+													.addClass(
+														'switch switch-round switch-primary');
+											}
+										} else {
+											if ($(ele)
+													.hasClass(
+														'block')) {
+												$(ele)
+													.removeClass()
+													.addClass(
+														'block mt15 switch switch-primary');
+											} else {
+												$(ele)
+													.removeClass()
+													.addClass(
+														'switch switch-primary');
+											}
+										}
+									});
+						}, 800);
+					// Init Select2 - Basic Single
+					$(".select2-single").select2();
+	
+					// Init Select2 - Contextuals (via html classes)
+					$(".select2-primary").select2(); // select2 contextual - primary
+					$(".select2-success").select2(); // select2 contextual - success
+					$(".select2-info").select2(); // select2 contextual - info
+					$(".select2-warning").select2(); /*  // select2 contextual - warning  */
+				});
 	</script>
 
 	<script>
@@ -792,7 +789,7 @@
 
 	<script>
 		$(document).ready(function() {
-
+	
 			$('#fadeOutFun').fadeOut(5000, 'swing', function() {
 				//callback function after animation finished
 				$("#fadeOutFun").attr('value', 'fadeOut() is now Complete');
