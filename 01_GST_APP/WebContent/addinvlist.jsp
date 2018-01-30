@@ -1,5 +1,6 @@
 
 <%
+// commiting code on github
 	if (session.getAttribute("userId") != null) {
 
 		session.setAttribute("page", "addinvlist");
