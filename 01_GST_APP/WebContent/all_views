@@ -1,0 +1,134 @@
+================== TO EDIT A VIEW ====================
+
+SHOW CREATE VIEW your_view_name
+
+Run the following query: SHOW CREATE VIEW your_view_name
+Expand the options and choose Full Texts
+Press Go
+Copy entire contents of the Create View column.
+Make changes to the query in the editor of your choice
+Run the query directly (without the CREATE VIEW... syntax) to make sure it runs as you expect it to.
+Once you're satisfied, click on your view in the list on the left to browse its data and then scroll all the way to the bottom where you'll see a CREATE VIEW link. Click that.
+Place a check in the OR REPLACE field.
+In the VIEW name put the name of the view you are going to update.
+In the AS field put the contents of the query that you ran while testing (without the CREATE VIEW... syntax).
+Press Go
+
+
+======================================================
+Payment history page view
+
+salespayhistory.jsp
+
+CREATE VIEW SALES_PAY_HISTORY
+AS
+SELECT
+  pd.idsales_pay_details, pd.client_code, pd.payment_mode, pd.cheque_no, pd.pay_made_date,
+  pd.PaymentAmount, pd.invoiceId, pd.balance_amnt, pd.createdTime, pd.deletestatus,
+  cm.id as uid, cm.client_id, cm.company_name
+  FROM sales_pay_details pd, client_master cm
+where
+  pd.client_code = cm.id and
+  pd.createdTime >= DATE_ADD(now(), INTERVAL -1 QUARTER);
+  
+  
+  ========================================================= 
+  
+  
+  Invoice LIST PAGE VIEW
+  
+  CREATE VIEW V_INV_LIST_PENDING_SHW
+AS
+Select
+    i.id as invoiceNo, id.id as idDetails, i.subtotal, i.clientid as clntId, i.grossamount, i.challn_no,
+    i.cgst_amnt, i.sgst_amnt, i.igst_amnt, i.print_status, i.outward_status,
+    i.updatedTime, id.invoiceId, id.printed,
+    cm.id, cm.client_id, cm.company_name, i.clientId
+from
+  Invoice i LEFT OUTER JOIN invoicedetails id
+  ON i.id = id.invoiceId, client_master cm
+where
+  i.clientid = cm.id
+GROUP BY i.id
+
+CHANGED TO BELOW
+
+
+Select
+    i.id as invoiceNo, id.id as idDetails, i.invoice_print_date, i.subtotal, i.clientid as clntId, i.grossamount, i.challn_no,
+    i.cgst_amnt, i.sgst_amnt, i.igst_amnt, i.print_status, i.outward_status,
+    i.updatedTime, id.invoiceId, id.printed,
+    cm.id, cm.client_id, cm.company_name, i.clientId
+from
+  Invoice i LEFT OUTER JOIN invoicedetails id
+  ON i.id = id.invoiceId, client_master cm
+where
+  i.clientid = cm.id and
+  i.invoice_print_date >= DATE_ADD(now(), INTERVAL -1 QUARTER)
+GROUP BY i.id
+  
+  
+  INVOICE LIST PAGE QUERY NEW ONE USED BELOW REMOVED ABOVE
+  
+CREATE VIEW
+V_LIST_OF_INVOICE
+AS
+Select
+    i.id as invoiceNo, id.id as idDetails, i.subtotal, i.clientid as clntId, i.grossamount, i.challn_no,
+    i.cgst_amnt, i.sgst_amnt, i.igst_amnt, i.print_status, i.outward_status,
+     IFNULL(i.newprint_date,'NA') as newprint_date, i.print_count,i.newprint_date,
+    i.updatedTime, id.invoiceId, id.printed,
+    cm.id, cm.client_id, cm.company_name, i.clientId, i.invoice_print_date
+from
+  Invoice i LEFT OUTER JOIN invoicedetails id
+  ON i.id = id.invoiceId, client_master cm
+where
+  i.clientid = cm.id
+and i.updatedTime >= DATE_ADD(now(), INTERVAL -1 QUARTER)
+GROUP BY i.id order by i.newprint_date desc;
+
+
+
+================================
+
+
+CREATE VIEW V_PAY_TRANSACTIONS
+AS
+SELECT Sum(DISTINCT ID.grossamount)
+       AS 
+       InvoiceAmount, 
+       Ifnull(Sum(sd.paymentamount), 0) 
+       AS PaymentMade, 
+       ( ( Sum(DISTINCT ID.grossamount) ) - Ifnull(Sum(sd.paymentamount), 0) ) 
+       AS 
+       BalanceAmount, 
+       cm.id as clntId,
+       cm.client_id,
+       cm.company_name,
+       cm.gst_no, 
+       id.id, 
+       id.clientid, 
+       id.grossamount, 
+       id.print_status, 
+       id.invoice_print_date, 
+       sd.idsales_pay_details,
+       sd.client_code, 
+       sd.payment_mode, 
+       sd.cheque_no, 
+       sd.pay_made_date, 
+       sd.paymentamount 
+FROM   invoice AS ID
+       INNER JOIN client_master AS CM 
+               ON ( ID.clientid = CM.id ) 
+       LEFT OUTER JOIN sales_pay_details AS SD
+                    ON ( ID.clientid = SD.client_code ) 
+GROUP  BY CM.id, 
+          cm.company_name 
+HAVING ( ( Sum(DISTINCT ID.grossamount) ) - Ifnull(Sum(sd.paymentamount), 0) ) > 
+       1;
+
+  
+  
+  
+  
+  
