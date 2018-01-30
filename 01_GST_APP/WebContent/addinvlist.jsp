@@ -1,7 +1,7 @@
 
 <%
 	// commiting code on github
-	// new comment to test
+	// Third comment
 	if (session.getAttribute("userId") != null) {
 
 		session.setAttribute("page", "addinvlist");
