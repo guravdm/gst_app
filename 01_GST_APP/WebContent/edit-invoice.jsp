@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New Client Entry</title>
+<title>Edit Invoice</title>
 
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="Cache-Control" content="no-cache" />
@@ -236,6 +236,7 @@
 															ps.setString(1, request.getParameter("clientName"));
 															ps.setString(2, request.getParameter("invsUniqId"));
 															ResultSet rs = ps.executeQuery();
+															//	System.out.println(ps);
 															while (rs.next()) {
 																cns++;
 

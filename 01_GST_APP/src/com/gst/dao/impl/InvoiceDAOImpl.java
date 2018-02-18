@@ -51,7 +51,7 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 					.prepareStatement("insert into invoice (clientId, challn_no, ChallanDate, PO_Number, PO_Date, PO_Valid_To,  interstate_flag, createdTime, updatedTime, newprint_date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, bean.getCustCode());
 			ps.setString(2, bean.getChallanNo());
-			ps.setString(3, poDate);
+			ps.setString(3, challanDate);
 			ps.setString(4, bean.getPoNo());
 			ps.setString(5, poDate);
 			ps.setString(6, poValidToDate);

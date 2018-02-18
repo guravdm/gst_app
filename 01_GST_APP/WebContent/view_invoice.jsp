@@ -33,10 +33,10 @@
 		String date = q.format(calendar.getTime());
 		/* System.out.println(date); */
 
-		System.out.println("After rolling 1 month, ending date is: ");
+		// System.out.println("After rolling 1 month, ending date is: ");
 		calendar.roll(Calendar.YEAR, -1);
 		date = q.format(calendar.getTime());;
-		System.out.println(date);
+		//System.out.println(date);
 
 		/* Calendar now = Calendar.getInstance();
 		System.out
@@ -309,36 +309,36 @@ td {
 
 			<%
 				Date chlnsDate = null, poSyDate = null, newprint_date = null;
-													String newSplitAdd = "", surveyNo = "", pincode = "";
-													String compName = "", state = "", gstInvNo = "", arnNo = "", gstNo = "", address = "", poNo = "", poDate = "", challanNo = "", challanDate = "";
-													PreparedStatement g = con
-															.prepareStatement("SELECT cm.id as clintUId, i.id as gstInvoiceNo, IFNULL(cm.pincode,'') as pincode, cm.survey_no, i.clientId, cm.client_id, cm.company_name, cm.email, cm.mob_no, cm.gst_no, IFNULL(cm.pan_no,'') as pan_no, cm.address,  cm.updated_time, cm.state, cm.arn_no, i.subtotal, i.grossamount,i.challn_no, i.ChallanDate, i.PO_Number, i.PO_Date, i.PO_Valid_To, IFNULL(i.newprint_date,'NA') as newprint_date FROM client_master cm, invoice i where i.clientId = cm.id and i.id = ?");
-													g.setString(1, request.getParameter("viewInvId"));
-													ResultSet rg = g.executeQuery();
-													while (rg.next()) {
-														gstInvNo = rg.getString(2);
-														compName = rg.getString("company_name");
-														surveyNo = rg.getString("survey_no");
-														arnNo = rg.getString("arn_no");
-														gstNo = rg.getString("gst_no");
-														address = rg.getString("address");
-														poNo = rg.getString("PO_Number");
-														poDate = rg.getString("PO_Date");
-														challanNo = rg.getString("challn_no");
-														challanDate = rg.getString("ChallanDate");
-														state = rg.getString("state");
-														pincode = rg.getString("pincode");
-														chlnsDate = rg.getDate("ChallanDate");
-														poSyDate = rg.getDate("PO_Date");
-														newprint_date = rg.getDate("newprint_date");
-													}
+															String newSplitAdd = "", surveyNo = "", pincode = "";
+															String compName = "", state = "", gstInvNo = "", arnNo = "", gstNo = "", address = "", poNo = "", poDate = "", challanNo = "", challanDate = "";
+															PreparedStatement g = con
+																	.prepareStatement("SELECT cm.id as clintUId, i.id as gstInvoiceNo, IFNULL(cm.pincode,'') as pincode, cm.survey_no, i.clientId, cm.client_id, cm.company_name, cm.email, cm.mob_no, cm.gst_no, IFNULL(cm.pan_no,'') as pan_no, cm.address,  cm.updated_time, cm.state, cm.arn_no, i.subtotal, i.grossamount,i.challn_no, i.ChallanDate, i.PO_Number, i.PO_Date, i.PO_Valid_To, IFNULL(i.newprint_date,'NA') as newprint_date FROM client_master cm, invoice i where i.clientId = cm.id and i.id = ?");
+															g.setString(1, request.getParameter("viewInvId"));
+															ResultSet rg = g.executeQuery();
+															while (rg.next()) {
+																gstInvNo = rg.getString(2);
+																compName = rg.getString("company_name");
+																surveyNo = rg.getString("survey_no");
+																arnNo = rg.getString("arn_no");
+																gstNo = rg.getString("gst_no");
+																address = rg.getString("address");
+																poNo = rg.getString("PO_Number");
+																poDate = rg.getString("PO_Date");
+																challanNo = rg.getString("challn_no");
+																challanDate = rg.getString("ChallanDate");
+																state = rg.getString("state");
+																pincode = rg.getString("pincode");
+																chlnsDate = rg.getDate("ChallanDate");
+																poSyDate = rg.getDate("PO_Date");
+																newprint_date = rg.getDate("newprint_date");
+															}
 
-													String message = address;
-													for (int i = 0; i < message.length(); i += 10) {
-														/* System.out.println(message.substring(i,
-														Math.min(i + 28, message.length()))); */
-														newSplitAdd = (message.substring(i,
-																Math.min(i + 28, message.length())));
+															String message = address;
+															for (int i = 0; i < message.length(); i += 10) {
+																/* System.out.println(message.substring(i,
+																Math.min(i + 28, message.length()))); */
+																newSplitAdd = (message.substring(i,
+																		Math.min(i + 28, message.length())));
 			%>
 
 			<%
@@ -421,9 +421,9 @@ td {
 													AA2702170201571</span></td>
 											<%
 												SimpleDateFormat sd = new SimpleDateFormat(
-																																																																																							"yyyy-MM-dd HH:mm:ss");
-																																																																																					SimpleDateFormat sd1 = new SimpleDateFormat("dd-MM-yyyy");
-																																																																																					String printDat = sd1.format(newprint_date);
+																																																																																																									"yyyy-MM-dd HH:mm:ss");
+																																																																																																							SimpleDateFormat sd1 = new SimpleDateFormat("dd-MM-yyyy");
+																																																																																																							String printDat = sd1.format(newprint_date);
 											%>
 											<td colspan="4" width="52%"><b>GST Invoice No</b>:
 												&nbsp;&nbsp;<%=gstInvNo%> / <%=date%> - <%=curYear%><br />
@@ -431,7 +431,7 @@ td {
 												<br /> <b> Challan No</b>: <span style="margin-left: 35px;"><%=challanNo%></span>
 												<br /> <b> Challan Date</b>: <%
  	String chalnDate = sd1.format(chlnsDate);
-         		String poSyDate1 = sd1.format(poSyDate);
+           		String poSyDate1 = sd1.format(poSyDate);
  %> <span style="margin-left: 24px;"><%=chalnDate%></span></td>
 										</tr>
 										<tr>
@@ -467,34 +467,34 @@ td {
 
 										<%
 											String anas = "";
-																																																																												String subTotal = "", cgst = "", sgst = "", igst = "", grandTotal = "";
-																																																																												double grndTot = 0f;
-																																																																												try {
+																																																																																												String subTotal = "", cgst = "", sgst = "", igst = "", grandTotal = "";
+																																																																																												double grndTot = 0f;
+																																																																																												try {
 
-																																																																													int cnt = 0;
+																																																																																													int cnt = 0;
 
-																																																																													PreparedStatement ps = con
-																																																																															.prepareStatement("SELECT mm.material_name, mm.hsn_code, mm.uom,id.materialQty, po.rate as po_Rate, id.materialRate as Rate, format(ROUND((id.materialQty * po.rate),2),2) as AmountEq, i.id as invoiceNo, id.id as idDetails, format(ROUND(i.subtotal),0) as subtotal, i.clientId as clntId, ROUND(i.grossamount) as grossamount, i.challn_no, format(ROUND(i.cgst_amnt,2),2) as cgst_amnt , format(ROUND(i.sgst_amnt,2),2) as sgst_amnt, format(ROUND(i.igst_amnt,2),2) as igst_amnt, i.print_status, i.outward_status, i.updatedTime, id.invoiceId, id.printed, cm.id as custId, cm.client_id, cm.company_name, i.clientId, po.po_no FROM invoice i, invoicedetails id, client_master cm, material_master mm, po_master po where id.materialCode = mm.id and po.material_id = mm.id and cm.id = po.client_id and id.invoiceId = i.id and i.clientId = cm.id and i.id = ?");
-																																																																													ps.setString(1, request.getParameter("viewInvId"));
-																																																																													ResultSet rs = ps.executeQuery();
-																																																																													System.out.println(ps);
-																																																																													while (rs.next()) {
-																																																																														cnt++;
-																																																																														subTotal = rs.getString("subtotal");
-																																																																														cgst = rs.getString("cgst_amnt");
-																																																																														sgst = rs.getString("sgst_amnt");
-																																																																														igst = rs.getString("igst_amnt");
-																																																																														grandTotal = rs.getString("grossamount");
-																																																																														grndTot = rs.getDouble("grossamount");
-																																																																														NumberFormat myFormat = NumberFormat.getInstance();
-																																																																													      myFormat.setGroupingUsed(true);
+																																																																																													PreparedStatement ps = con
+																																																																																															.prepareStatement("SELECT mm.material_name, mm.hsn_code, mm.uom,id.materialQty, po.rate as po_Rate, id.materialRate as Rate, format(ROUND((id.materialQty * po.rate),2),2) as AmountEq, i.id as invoiceNo, id.id as idDetails, format(ROUND(i.subtotal),0) as subtotal, i.clientId as clntId, ROUND(i.grossamount) as grossamount, i.challn_no, format(ROUND(i.cgst_amnt,2),2) as cgst_amnt , format(ROUND(i.sgst_amnt,2),2) as sgst_amnt, format(ROUND(i.igst_amnt,2),2) as igst_amnt, i.print_status, i.outward_status, i.updatedTime, id.invoiceId, id.printed, cm.id as custId, cm.client_id, cm.company_name, i.clientId, po.po_no FROM invoice i, invoicedetails id, client_master cm, material_master mm, po_master po where id.materialCode = mm.id and po.material_id = mm.id and cm.id = po.client_id and id.invoiceId = i.id and i.clientId = cm.id and i.id = ? order by id.id asc");
+																																																																																													ps.setString(1, request.getParameter("viewInvId"));
+																																																																																													ResultSet rs = ps.executeQuery();
+																																																																																													// System.out.println(ps);
+																																																																																													while (rs.next()) {
+																																																																																														cnt++;
+																																																																																														subTotal = rs.getString("subtotal");
+																																																																																														cgst = rs.getString("cgst_amnt");
+																																																																																														sgst = rs.getString("sgst_amnt");
+																																																																																														igst = rs.getString("igst_amnt");
+																																																																																														grandTotal = rs.getString("grossamount");
+																																																																																														grndTot = rs.getDouble("grossamount");
+																																																																																														NumberFormat myFormat = NumberFormat.getInstance();
+																																																																																													      myFormat.setGroupingUsed(true);
 
-																																																																													      double[] numbers = { grndTot };
+																																																																																													      double[] numbers = { grndTot };
 
-																																																																													      for (double d : numbers) {
-																																																																													         System.out.println(myFormat.format(d));
-																																																																													         anas = myFormat.format(d);
-																																																																													      }
+																																																																																													      for (double d : numbers) {
+																																																																																													         System.out.println(myFormat.format(d));
+																																																																																													         anas = myFormat.format(d);
+																																																																																													      }
 										%>
 										<tr>
 											<td style="text-align: center;"><%=cnt%></td>
@@ -505,11 +505,11 @@ td {
 
 											<%
 												float qtyMtrlRateAmnt = 0f;
-																																																																																							Float qty = Float.parseFloat(rs
-																																																																																									.getString("materialQty"));
-																																																																																							Float rates = Float.parseFloat(rs.getString("rate"));
-																																																																																							qtyMtrlRateAmnt = qty * rates;
-																																																																																							int roundAmounts = Math.round(qtyMtrlRateAmnt);
+																																																																																																									Float qty = Float.parseFloat(rs
+																																																																																																											.getString("materialQty"));
+																																																																																																									Float rates = Float.parseFloat(rs.getString("rate"));
+																																																																																																									qtyMtrlRateAmnt = qty * rates;
+																																																																																																									int roundAmounts = Math.round(qtyMtrlRateAmnt);
 											%>
 
 											<%-- <td><%=roundAmounts%></td> --%>
@@ -520,7 +520,7 @@ td {
 										<%
 											}
 
-																																																																													if (cnt < 5) {
+																																																																																													if (cnt < 5) {
 										%>
 										<tr>
 											<td class="tg"></td>
@@ -541,9 +541,9 @@ td {
 										<%
 											}
 
-																																																																												} catch (SQLException e) {
-																																																																													e.printStackTrace();
-																																																																												}
+																																																																																												} catch (SQLException e) {
+																																																																																													e.printStackTrace();
+																																																																																												}
 										%>
 
 
